@@ -23,7 +23,7 @@ export class BitacoraListComponent implements OnInit {
         url: "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
       },
       pagingType: 'full_numbers',
-      pageLength: 2
+      pageLength: 5
     };
     this.getBitacoras();
   }
