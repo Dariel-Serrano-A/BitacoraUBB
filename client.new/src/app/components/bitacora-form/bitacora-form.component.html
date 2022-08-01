@@ -1,0 +1,52 @@
+<div class="col-md-4 offset-md-4">
+    <div class="card">
+        <div class="card-body">
+            <form >
+                <h4 class="d-flex justify-content-center mb-3">Bitacora</h4>
+                <div class="form-group">
+                    Duracion:
+                    <input type="text" name="duracionactividad" [(ngModel)]="bitacora.duracionactividad" placeholder='Ingrese duracion sin ":"' class="form-control">
+                </div>
+                <div class="form-group my-3">
+                    Descripcion:
+                    <textarea name="descripcionbitacora" [(ngModel)]="bitacora.descripcionbitacora" placeholder="Ejemplo: Esta es mi descripcion"  rows="3" class="form-control"></textarea>
+                </div>
+                <div class="form-group my-3">
+                    Seleccione, es en compañia de:
+                    <select name="encompaniade" [(ngModel)]="bitacora.encompaniade" class="form-control">
+                        <option selected>jefatura</option>                        
+                        <option>otros practicantes</option>
+                        <option>grupo</option>
+                        <option>en forma individual</option>
+                        <option>otra compañia</option>
+                    </select>
+                </div>
+                <div class="form-group my-3">
+                    Seleccione, la actividad corresponde a:
+                    <select name="actividadcorrespondea" [(ngModel)]="bitacora.actividadcorrespondea" class="form-control">                        
+                        <option selected>Seleccione una opcion</option>
+                        <option>reunion</option>                        
+                        <option>busqueda informacion</option>
+                        <option>estudio software</option>
+                        <option>estudio hardware</option>
+                        <option>trabajo terreno</option>
+                        <option>exposicion</option>
+                        <option>lectura de manuales</option>
+                        <option>estudios de framework</option>
+                        <option>instalacion software</option>
+                        <option>instalacion hardware</option>
+                        <option>otra actividad</option>
+                    </select>
+                </div>
+                <div class="d-flex align-items-center">
+                    <a [routerLink]="['/bitacoras']" class="form-control btn btn-danger btn-block">
+                        Volver
+                      </a>
+                    <button class="form-control btn btn-success btn-block " (click)="edit ? updateBitacora() : saveNewBitacora()">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

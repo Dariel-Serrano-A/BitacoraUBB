@@ -1,0 +1,39 @@
+<a [routerLink]="['/bitacoras/add']" class="btn btn-info btn-block float-end mb-2">
+  Agregar bitacora
+</a>
+<table datatable datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="row-border hover">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Duracion</th>
+      <th>Tipo Actividad</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="bitacoras?.length != 0">
+    <tr *ngFor="let bitacora of bitacoras">
+      <td>{{bitacora.created_at | date: 'dd-MM-yyyy'}}</td>
+      <td>{{bitacora.duracionactividad | slice:-4:-2}}:{{bitacora.duracionactividad | slice:-2}} hrs</td>
+      <td>{{bitacora.actividadcorrespondea | titlecase}}</td>
+      <td>
+        <div class="d-flex justify-contentbetweeen align-items-center">
+          <a [routerLink]="['/bitacoras/detail', bitacora.idbitacora]" class="btn btn-success btn-block">
+            Ver
+          </a> 
+          <a [routerLink]="['/bitacoras/edit', bitacora.idbitacora]" class="btn btn-info btn-block">
+            MODIFICAR
+          </a>         
+          <button class="btn btn-danger" (click)="deleteBitacora(bitacora.idbitacora)">
+            <i class="far fa-trash-alt" ></i>
+          </button>
+          </div>
+    
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="bitacoras?.length == 0">
+    <tr>
+      <td colspan="3" class="no-data-available">No data!</td>
+    </tr>
+  </tbody>
+</table>

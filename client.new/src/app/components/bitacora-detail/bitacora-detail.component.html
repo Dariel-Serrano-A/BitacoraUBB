@@ -1,0 +1,42 @@
+<div class="col-md-4 offset-md-4">
+    <div class="card">
+        <div class="card-body">
+            <form >
+                <h4 class="d-flex justify-content-center mb-3">Bitacora</h4>
+                <div class="form-group my-3">
+                    <h5>Nombre:</h5>
+                    <p class="border-bottom fs-5">{{informacion.nombre | titlecase}}</p>
+                </div>
+                <div class="form-group my-3">
+                    <h5>Apellido:</h5>
+                    <p class="border-bottom fs-5">{{ informacion.apellido | titlecase}}</p>
+                </div>
+                <div class="form-group my-3">
+                    <h5>Situacion:</h5>
+                    <p class="border-bottom fs-5">{{ rol | titlecase}}</p>
+                </div>
+                <div class="form-group">
+                    <h5>Duracion:</h5>
+                    <p class="border-bottom fs-5">{{bitacora.duracionactividad | slice:-4:-2}}:{{bitacora.duracionactividad | slice:-2}} hrs</p>
+                </div>
+                <div class="form-group my-3">
+                    <h5>Descripcion:</h5>
+                    <p class="border-bottom fs-5">{{bitacora.descripcionbitacora}}</p>
+                </div>
+                <div class="form-group my-3">
+                    <h5>En compañia de:</h5>
+                    <p class="border-bottom fs-5">{{bitacora.encompaniade | titlecase}}</p> 
+                </div>
+                <div class="form-group my-3">
+                    <h5>La actividad corresponde a:</h5>
+                    <p class="border-bottom fs-5">{{bitacora.actividadcorrespondea | titlecase}}</p>
+                </div>                
+                <div class="d-flex align-items-center">
+                    <a [routerLink]="['/bitacoras']" class="form-control btn btn-danger btn-block">
+                        Volver
+                      </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
