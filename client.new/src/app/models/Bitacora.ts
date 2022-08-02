@@ -5,6 +5,6 @@ export interface  Bitacora{
     encompaniade?: string;
     actividadcorrespondea?: string;
     usuario_idusuario?: number;
-    created_at?: Date;
+    created_at?: string;
 }
 

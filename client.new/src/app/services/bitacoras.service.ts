@@ -30,10 +30,14 @@ export class BitacorasService {
   }
 
   saveBitacora (bitacora: Bitacora){
+    console.log("API/INSERT");
+    console.log(bitacora);
     return this.http.post(`${this.API_URI}/bitacoras`,bitacora);
   }
   
   updateBitacora (id: String|number|undefined, updatedBitacora: Bitacora): Observable <Bitacora> {
+    console.log("API/update");
+    console.log(updatedBitacora);
     return this.http.put(`${this.API_URI}/bitacoras/${id}`,updatedBitacora);
   }
 

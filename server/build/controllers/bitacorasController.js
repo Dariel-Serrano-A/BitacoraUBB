@@ -95,9 +95,10 @@ class BitacorasController {
                 response[1] = 'Error en tipo de actividad de actividad';
                 res.json(response);
             }
-            else { //Insersion de datos
+            else { //Insercion de datos
                 try {
-                    yield database_1.default.query('INSERT INTO bitacora set ?', [req.body]); //consulta sql
+                    console.log(req.body);
+                    yield database_1.default.query('INSERT INTO bitacora set ?', req.body); //consulta sql
                     response[0] = true;
                     response[1] = 'La bitacora fue guardada con exito';
                     res.json(response);
@@ -148,6 +149,7 @@ class BitacorasController {
             }
             else { //Actualizacion de datos
                 try {
+                    console.log(req.body);
                     yield database_1.default.query('UPDATE bitacora set ? WHERE idbitacora = ?', [req.body, id]);
                     response[0] = true;
                     response[1] = 'La bitacora fue actualizada con exito';

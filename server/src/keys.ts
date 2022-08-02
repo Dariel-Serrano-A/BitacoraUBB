@@ -1,4 +1,4 @@
-/* export default {
+export default {
 
     database: {
         host: 'mysqltrans.face.ubiobio.cl',
@@ -7,8 +7,8 @@
         database: 'G7taller_bd'
     }
     
-} */
-export default {
+}
+/* export default {
 
     database: {
         host: 'localhost',
@@ -17,4 +17,4 @@ export default {
         database: 'G7taller_bd'
     }
     
-}
+} */

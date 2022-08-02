@@ -74,9 +74,10 @@ class BitacorasController {
             response[0]=false;
             response[1]='Error en tipo de actividad de actividad';
             res.json(response);
-        }else{ //Insersion de datos
+        }else{ //Insercion de datos
             try {
-                await promisePool.query('INSERT INTO bitacora set ?', [req.body]); //consulta sql
+                console.log(req.body);
+                await promisePool.query('INSERT INTO bitacora set ?', req.body); //consulta sql
                 response[0]=true;
                 response[1]='La bitacora fue guardada con exito';
                 res.json(response);
@@ -123,6 +124,7 @@ class BitacorasController {
             res.json(response);
         } else { //Actualizacion de datos
             try {
+                console.log(req.body);
                 await promisePool.query('UPDATE bitacora set ? WHERE idbitacora = ?', [req.body,id]);
                 response[0]=true;
                 response[1]='La bitacora fue actualizada con exito';

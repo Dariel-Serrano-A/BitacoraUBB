@@ -4,6 +4,7 @@ import {ActivatedRoute,Router} from '@angular/router'
 
 import {BitacorasService} from '../../services/bitacoras.service'
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-bitacora-form',
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./bitacora-form.component.css']
 })
 export class BitacoraFormComponent implements OnInit {
+  
 
   bitacora: Bitacora = {
     idbitacora: 0 ,
@@ -19,8 +21,10 @@ export class BitacoraFormComponent implements OnInit {
     encompaniade: '' ,
     actividadcorrespondea: '',
     usuario_idusuario: 1,
-    created_at: new Date ()
+    created_at: ''
    };
+
+  
 
   edit: boolean = false;
 
@@ -33,7 +37,7 @@ export class BitacoraFormComponent implements OnInit {
       .subscribe(
         (res: any = [])=> {
           this.bitacora=res[0];
-          this.edit = true;
+          this.edit = true;      
         },
         err=> {
           console.error(err)
@@ -50,7 +54,7 @@ export class BitacoraFormComponent implements OnInit {
 
    saveNewBitacora(){
     delete this.bitacora.idbitacora;
-    delete this.bitacora.created_at;
+    this.bitacora.created_at = new Date().toLocaleDateString("es-CL",  {timeZone: "America/Santiago"}).split('-').reverse().join('-');
     if (!this.bitacora.duracionactividad || this.bitacora.duracionactividad.length<=0 || !this.validarNumString(this.bitacora.duracionactividad)){
       Swal.fire({
         icon: 'error',
@@ -167,6 +171,7 @@ export class BitacoraFormComponent implements OnInit {
   validarNumString(texto: string){
     return /^([0-9])*$/g.test(texto);
   }
+  
 
 
 
