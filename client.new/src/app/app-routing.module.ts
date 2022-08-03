@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BitacoraListComponent } from './components/bitacora-list/bitacora-list.component';
 import { BitacoraFormComponent } from './components/bitacora-form/bitacora-form.component';
 import { BitacoraDetailComponent } from './components/bitacora-detail/bitacora-detail.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'bitacoras/detail/:idbitacora',
     component: BitacoraDetailComponent
+  },
+
+  {
+    path: 'calendario',
+    component: CalendarioComponent
   }
 ];
 

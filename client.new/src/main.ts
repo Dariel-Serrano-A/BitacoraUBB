@@ -1,12 +1,9 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
 import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+import { registerLicense } from '@syncfusion/ej2-base';
 
-if (environment.production) {
-  enableProdMode();
-}
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+// Registering Syncfusion license key
+registerLicense('Mgo+DSMBaFt/QHJqVVhjWlpFdEBBXHxAd1p/VWJYdVt5flBPcDwsT3RfQF9jQX5Qdk1jUXpWd3dURg==;Mgo+DSMBPh8sVXJ0S0R+XE9HcFRDX3xKf0x/TGpQb19xflBPallYVBYiSV9jS3xTfkVgWXdeeHFdQWRfUQ==;ORg4AjUWIQA/Gnt2VVhiQlFadVlJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRdk1jWn9WcHxQTmdZVUQ=;Njg5OTU4QDMyMzAyZTMyMmUzMFIyT0hXaXFnYUxhOUJTMWVPaUFNN1VXb1U3SnlQL1BNeFV1UnpNQk5YUGc9;Njg5OTU5QDMyMzAyZTMyMmUzMGRhclFTd1RJSUc1Q0xnb01qS2tZM2p6YTdybnY4OTFuY3ZqZ3ZpM2svU0E9;NRAiBiAaIQQuGjN/V0Z+Xk9EaFxEVmJLYVB3WmpQdldgdVRMZVVbQX9PIiBoS35RdEVrWXxeeHRdQ2hUUEJ2;Njg5OTYxQDMyMzAyZTMyMmUzMG13T2tXNXpsMkRsYUhKNmcrMGZIY2xxeDRuZUZTa0ZxREJDNEFkM2JKZkE9;Njg5OTYyQDMyMzAyZTMyMmUzMFNab2pMTGpMemlNcTNuMXBsU1ZIcitOSlVPUEJyaTBramUvTS90cjBtUEU9;Mgo+DSMBMAY9C3t2VVhiQlFadVlJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRdk1jWn9WcHxQTmhVVEQ=;Njg5OTY0QDMyMzAyZTMyMmUzMFdUMFR4NnRBeDh4Q05ORnBiWDV5SDl0SXJCQi9IT0dkZTFQMGppdVl1aVk9;Njg5OTY1QDMyMzAyZTMyMmUzMGRoZ29veER0Smg3a1ZLdFFHY2VTaVk3cVpPWHRuK0FxeXFVZDJkWlkvYzg9;Njg5OTY2QDMyMzAyZTMyMmUzMG13T2tXNXpsMkRsYUhKNmcrMGZIY2xxeDRuZUZTa0ZxREJDNEFkM2JKZkE9');
+enableProdMode();
+platformBrowserDynamic().bootstrapModule(AppModule);
