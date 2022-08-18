@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <nav class="navbar bg-light">
-    <div class="container-fluid">      
+    <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -20,7 +20,7 @@
                   Bitacoras
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                  <li><a class="dropdown-item" routerLink="/bitacoras"><i class="fa-solid fa-file-lines"></i> Ver Bitacoras</a></li>
+                  <li><a class="dropdown-item" routerLink="/bitacoras"><i class="fa-solid fa-list"></i> Ver Bitacoras</a></li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
@@ -32,11 +32,8 @@
                   Calendario
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                  <li><a class="dropdown-item" href="/calendario">Ver Calendario</a></li>
+                  <li><a class="dropdown-item" href="/calendario"><i class="fa-solid fa-calendar-days"></i> Ver Calendario Actividad</a></li>
                   <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="/calendario/recordatorios">Listar Recordatorios</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -44,7 +41,9 @@
                   Notas Rapidas
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                  <li><a class="dropdown-item" href="/notas-rapidas">Ver Notas Rapidas</a></li>
+                  <li><a class="dropdown-item" href="/lista-notas"><i class="fa-solid fa-list"></i> Ver Notas Rapidas</a></li>
+                  <hr class="dropdown-divider">
+                  <li><a class="dropdown-item" href="/agregar-notas"><i class="fa-solid fa-circle-plus"></i> Agregar Notas</a></li>
                 </ul>
             </li>
           </ul>
