@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <form >
-                <h4 class="d-flex justify-content-center mb-3">Bitacora</h4>
+                <h4 class="d-flex justify-content-center mb-3"> {{titulo_bitacora}} </h4>
                 <div class="form-group">
                     Duracion:
                     <input type="text" name="duracionactividad" [(ngModel)]="bitacora.duracionactividad" placeholder='Ingrese duracion sin ":"' class="form-control">
@@ -24,8 +24,7 @@
                 <div class="form-group my-3">
                     Seleccione, la actividad corresponde a:
                     <select name="actividadcorrespondea" [(ngModel)]="bitacora.actividadcorrespondea" class="form-control">                        
-                        <option selected>Seleccione una opcion</option>
-                        <option>reunion</option>                        
+                        <option selected>reunion</option>                        
                         <option>busqueda informacion</option>
                         <option>estudio software</option>
                         <option>estudio hardware</option>
