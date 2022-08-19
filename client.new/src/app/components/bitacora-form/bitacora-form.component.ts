@@ -4,7 +4,6 @@ import {ActivatedRoute,Router} from '@angular/router'
 
 import {BitacorasService} from '../../services/bitacoras.service'
 import Swal from 'sweetalert2';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-bitacora-form',
@@ -27,6 +26,7 @@ export class BitacoraFormComponent implements OnInit {
   
 
   edit: boolean = false;
+  titulo_bitacora: string = 'Registro de Bitácora'
 
   constructor(private bitacoraService: BitacorasService, private router:Router, private activatedRoute:ActivatedRoute) { }
 
@@ -37,7 +37,8 @@ export class BitacoraFormComponent implements OnInit {
       .subscribe(
         (res: any = [])=> {
           this.bitacora=res[0];
-          this.edit = true;      
+          this.edit = true; 
+          this.titulo_bitacora = 'Edición de Bitácora';
         },
         err=> {
           console.error(err)
@@ -55,29 +56,59 @@ export class BitacoraFormComponent implements OnInit {
    saveNewBitacora(){
     delete this.bitacora.idbitacora;
     this.bitacora.created_at = new Date().toLocaleDateString("es-CL",  {timeZone: "America/Santiago"}).split('-').reverse().join('-');
-    if (!this.bitacora.duracionactividad || this.bitacora.duracionactividad.length<=0 || !this.validarNumString(this.bitacora.duracionactividad)){
+    if (!this.bitacora.duracionactividad || this.bitacora.duracionactividad.length<=0){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Falta duracion de actividad o sus caracteres no son validos`,         
+        text: `Debe ingresar la duración de actividad`,         
     })
-    }else if (!this.bitacora.descripcionbitacora || this.bitacora.descripcionbitacora.length<=0 || !this.validarTexto(this.bitacora.descripcionbitacora)){
+    } else if (!this.validarNumString(this.bitacora.duracionactividad)){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Falta descripcion de actividad o sus caracteres no son validos`,         
+        text: `Los caracteres de duración de actividad no son validos`,         
     })
-    }else if (!this.bitacora.encompaniade || this.bitacora.encompaniade.length<=0 || !this.validarTexto(this.bitacora.encompaniade)){
+    } else if (this.bitacora.duracionactividad.length>500){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Falta tipo de compañia o la opcion no es valida`,         
+        text: `Descripción de actividad supera límite de 500 caracteres`,         
     })
-    }else if (!this.bitacora.actividadcorrespondea || this.bitacora.actividadcorrespondea.length<=0 || !this.validarTexto(this.bitacora.actividadcorrespondea)){
+    } else if (!this.bitacora.descripcionbitacora || this.bitacora.descripcionbitacora.length<=0){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Falta tipo de actividad o la opcion no es valida`,         
+        text: `Debe ingresar la descripción de actividad`,        
+    })
+    }else if (!this.validarTexto(this.bitacora.descripcionbitacora)){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Los caracteres de descripción de actividad no son validos`,         
+    })
+    }else if (!this.bitacora.encompaniade || this.bitacora.encompaniade.length<=0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Debe ingresar el tipo de compañía`,         
+    })
+    }else if (!this.validarTexto(this.bitacora.encompaniade)){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Los caracteres de tipo de compañía no son validos`,    
+    })
+    }else if (!this.bitacora.actividadcorrespondea || this.bitacora.actividadcorrespondea.length<=0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Debe ingresar el tipo de actividad`,         
+    })
+    }else if (!this.validarTexto(this.bitacora.actividadcorrespondea)){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Los caracteres de tipo de actividad no son validos`,         
     })
     }else{
       this.bitacoraService.saveBitacora(this.bitacora)
@@ -108,35 +139,59 @@ export class BitacoraFormComponent implements OnInit {
 
    updateBitacora(){
     delete this.bitacora.created_at;
-    if (!this.bitacora.duracionactividad || this.bitacora.duracionactividad.length<=0 || !this.validarNumString(this.bitacora.duracionactividad)){
+    if (!this.bitacora.duracionactividad || this.bitacora.duracionactividad.length<=0){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Falta duracion de actividad o sus caracteres no son validos`,         
+        text: `Debe ingresar la duración de actividad`,         
+    })
+    } else if (!this.validarNumString(this.bitacora.duracionactividad)){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Los caracteres de duración de actividad no son validos`,         
     })
     } else if (this.bitacora.duracionactividad.length>500){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Descripcion de actividad supera limite de 500 caracteres`,         
+        text: `Descripción de actividad supera límite de 500 caracteres`,         
     })
-    } else if (!this.bitacora.descripcionbitacora || this.bitacora.descripcionbitacora.length<=0 || !this.validarTexto(this.bitacora.descripcionbitacora)){
+    } else if (!this.bitacora.descripcionbitacora || this.bitacora.descripcionbitacora.length<=0){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Falta descripcion de actividad o sus caracteres no son validos`,         
+        text: `Debe ingresar la descripción de actividad`,        
     })
-    }else if (!this.bitacora.encompaniade || this.bitacora.encompaniade.length<=0 || !this.validarTexto(this.bitacora.encompaniade)){
+    }else if (!this.validarTexto(this.bitacora.descripcionbitacora)){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Falta tipo de compañia o la opcion no es valida`,         
+        text: `Los caracteres de descripción de actividad no son validos`,         
     })
-    }else if (!this.bitacora.actividadcorrespondea || this.bitacora.actividadcorrespondea.length<=0 || !this.validarTexto(this.bitacora.actividadcorrespondea)){
+    }else if (!this.bitacora.encompaniade || this.bitacora.encompaniade.length<=0){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Falta tipo de actividad o la opcion no es valida`,         
+        text: `Debe ingresar el tipo de compañía`,         
+    })
+    }else if (!this.validarTexto(this.bitacora.encompaniade)){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Los caracteres de tipo de compañía no son validos`,    
+    })
+    }else if (!this.bitacora.actividadcorrespondea || this.bitacora.actividadcorrespondea.length<=0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Debe ingresar el tipo de actividad`,         
+    })
+    }else if (!this.validarTexto(this.bitacora.actividadcorrespondea)){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Los caracteres de tipo de actividad no son validos`,         
     })
     }else{
       this.bitacoraService.updateBitacora(this.bitacora.idbitacora,this.bitacora)

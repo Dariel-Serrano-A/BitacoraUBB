@@ -18,10 +18,10 @@
       <td>
         <div class="d-flex justify-contentbetweeen align-items-center">
           <a [routerLink]="['/bitacoras/detail', bitacora.idbitacora]" class="btn btn-success btn-block">
-            Ver
+            VER DETALLE
           </a> 
           <a [routerLink]="['/bitacoras/edit', bitacora.idbitacora]" class="btn btn-info btn-block">
-            MODIFICAR
+            EDITAR
           </a>         
           <button class="btn btn-danger" (click)="deleteBitacora(bitacora.idbitacora)">
             <i class="far fa-trash-alt" ></i>
@@ -33,7 +33,7 @@
   </tbody>
   <tbody *ngIf="bitacoras?.length == 0">
     <tr>
-      <td colspan="3" class="no-data-available">No data!</td>
+      <td colspan="3" class="no-data-available">No hay datos disponibles!</td>
     </tr>
   </tbody>
 </table>
