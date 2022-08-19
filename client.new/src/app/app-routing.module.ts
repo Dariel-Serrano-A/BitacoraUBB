@@ -5,8 +5,10 @@ import { BitacoraFormComponent } from './components/bitacora-form/bitacora-form.
 import { BitacoraDetailComponent } from './components/bitacora-detail/bitacora-detail.component';
 
 import { CalendarioComponent } from './components/calendario/calendario.component';
-import { NotaComponent } from './components/nota/nota.component';
-import { ListaNotasComponent } from './components/lista-notas/lista-notas.component';
+import { NotaFormComponent } from './components/nota-form/nota-form.component';
+import { NotaDetailComponent } from './components/nota-detail/nota-detail.component';
+import { NotaListComponent } from './components/nota-list/nota-list.component';
+
 
 
 const routes: Routes = [
@@ -37,13 +39,20 @@ const routes: Routes = [
     component: CalendarioComponent
   },
   {
-    path: 'lista-notas',
-    component: ListaNotasComponent
-  }
-  ,
+    path: 'notas',
+    component: NotaListComponent
+  },
   {
-    path: 'agregar-notas',
-    component: NotaComponent
+    path: 'notas/add',
+    component: NotaFormComponent
+  },
+  {
+    path: 'notas/edit/:idnotas',
+    component: NotaFormComponent
+  },
+  {
+    path: 'notas/detail/:idnotas',
+    component: NotaDetailComponent
   }
 ];
 

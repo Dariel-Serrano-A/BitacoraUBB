@@ -4,7 +4,7 @@ import cors from 'cors';
 
 import indexRoutes from './routes/indexRoutes';
 import bitacorasRoutes from './routes/bitacorasRoutes';
-
+import notasRoutes from './routes/notasRoutes';
 class Server {
     public app: Application;  
     constructor(){         
@@ -23,6 +23,7 @@ class Server {
     routes(): void {
         this.app.use('/',indexRoutes);
         this.app.use('/api/bitacoras',bitacorasRoutes);
+        this.app.use('/api/notas', notasRoutes);
     }
 
     start (): void {

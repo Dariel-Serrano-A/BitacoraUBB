@@ -8,6 +8,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const bitacorasRoutes_1 = __importDefault(require("./routes/bitacorasRoutes"));
+const notasRoutes_1 = __importDefault(require("./routes/notasRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -24,6 +25,7 @@ class Server {
     routes() {
         this.app.use('/', indexRoutes_1.default);
         this.app.use('/api/bitacoras', bitacorasRoutes_1.default);
+        this.app.use('/api/notas', notasRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

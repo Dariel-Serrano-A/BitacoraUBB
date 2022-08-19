@@ -15,9 +15,13 @@ import { BitacorasService } from './services/bitacoras.service';
 import { BitacoraDetailComponent } from './components/bitacora-detail/bitacora-detail.component';
 
 
-//Parte Shauffa 
+//Parte Shauffa
 
 import { CalendarioModule } from './components/calendario/calendario.module';
+import { NotaFormComponent } from './components/nota-form/nota-form.component';
+import { NotaListComponent } from './components/nota-list/nota-list.component';
+import { NotasService } from './services/notas.service';
+import { NotaDetailComponent } from './components/nota-detail/nota-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +29,9 @@ import { CalendarioModule } from './components/calendario/calendario.module';
     BitacoraFormComponent,
     BitacoraListComponent,
     BitacoraDetailComponent
+    ,NotaFormComponent,
+    NotaListComponent,
+    NotaDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +43,7 @@ import { CalendarioModule } from './components/calendario/calendario.module';
   ],
   providers: [
     BitacorasService
+    ,NotasService
   ],
   bootstrap: [AppComponent]
 })

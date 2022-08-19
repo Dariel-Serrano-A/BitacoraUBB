@@ -1,0 +1,39 @@
+<a [routerLink]="['/notas/add']" class="btn btn-info btn-block float-end mb-2">
+  Agregar nota </a>
+
+  <table datatable datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="row-border hover">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Titulo</th>
+        <th>Contenido</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="notas?.length != 0">
+      <tr *ngFor="let nota of notas">
+        <td>{{nota.created_at | date: 'dd-MM-yyyy'}}</td>
+        <td>{{nota.titulo}}</td>
+        <td>{{nota.contenido | titlecase}}</td>
+        <td>
+          <div class="d-flex justify-contentbetweeen align-items-center">
+            <a [routerLink]="['/notas/detail', nota.idnotas]" class="btn btn-success btn-block">
+              VER DETALLE
+            </a>
+            <a [routerLink]="['/notas/edit', nota.idnotas]" class="btn btn-info btn-block">
+              EDITAR
+            </a>
+            <button class="btn btn-danger" (click)="deleteNota(nota.idnotas)">
+              <i class="far fa-trash-alt" ></i>
+            </button>
+            </div>
+
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="notas?.length == 0">
+      <tr>
+        <td colspan="3" class="no-data-available">No hay datos disponibles!</td>
+      </tr>
+    </tbody>
+  </table>
