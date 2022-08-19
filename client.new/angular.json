@@ -34,7 +34,9 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/datatables.net/js/jquery.dataTables.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "bootstrap/dist/js/bootstrap.min.js"
+              
             ]
           },
           "configurations": {
