@@ -15,8 +15,7 @@ export class NotaFormComponent implements OnInit {
     idnotas: 0 ,
     titulo: '',
     contenido: '',
-    usuario_idusuario: 1,
-    created_at: ''
+    usuario_idusuario: 1
   };
 
   edit: boolean = false;
@@ -50,7 +49,6 @@ export class NotaFormComponent implements OnInit {
   saveNewNota(){
 
     delete this.nota.idnotas;
-    this.nota.created_at = new Date().toLocaleDateString("es-CL",  {timeZone: "America/Santiago"}).split('-').reverse().join('-');
     if (!this.nota.titulo || this.nota.titulo.length<=0){
       Swal.fire({
         icon: 'error',
@@ -94,7 +92,7 @@ export class NotaFormComponent implements OnInit {
           Swal.fire({
             icon: 'success',
             title: 'Éxito',
-            text: `${this.nota.titulo} exitosa`,
+            text: `Guardado de ${this.nota.titulo} exitoso`,
             });
             setTimeout(() => {
           this.router.navigate(['/notas']);
@@ -114,7 +112,6 @@ export class NotaFormComponent implements OnInit {
 }
 updateNota(){
 
-    delete this.nota.created_at;
     if (!this.nota.titulo || this.nota.titulo.length<=0){
       Swal.fire({
         icon: 'error',

@@ -15,7 +15,7 @@ class NotasController {
         }
     } 
     public async getOne (req: Request, res: Response): Promise<any> {
-        const id = req.params;
+        const { id } = req.params;
         const response = Array();
         try {
             console.log(id);

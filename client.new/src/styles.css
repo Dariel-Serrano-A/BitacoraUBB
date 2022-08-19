@@ -1,0 +1,4 @@
+#fbuilder select {
+    visibility: visible !important;
+    -webkit-appearance: listbox !important;
+}

@@ -3,5 +3,4 @@ export interface  Nota{
   titulo?: string;
   contenido?: string;
   usuario_idusuario?: number;
-  created_at?: string;
 }

@@ -31,7 +31,7 @@ class NotasController {
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const id = req.params;
+            const { id } = req.params;
             const response = Array();
             try {
                 console.log(id);

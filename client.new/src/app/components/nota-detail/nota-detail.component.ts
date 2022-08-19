@@ -17,7 +17,6 @@ export class NotaDetailComponent implements OnInit {
     titulo: '',
     contenido: '',
     usuario_idusuario: 1,
-    created_at: ''
   };
 
 
