@@ -6,6 +6,7 @@ import { BitacoraDetailComponent } from './components/bitacora-detail/bitacora-d
 
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { NotaComponent } from './components/nota/nota.component';
+import { ListaNotasComponent } from './components/lista-notas/lista-notas.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,11 @@ const routes: Routes = [
     path: 'calendario',
     component: CalendarioComponent
   },
+  {
+    path: 'lista-notas',
+    component: ListaNotasComponent
+  }
+  ,
   {
     path: 'agregar-notas',
     component: NotaComponent
