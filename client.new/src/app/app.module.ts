@@ -14,6 +14,7 @@ import { BitacoraListComponent } from './components/bitacora-list/bitacora-list.
 import { BitacorasService } from './services/bitacoras.service';
 import { BitacoraDetailComponent } from './components/bitacora-detail/bitacora-detail.component';
 
+
 //Parte Shauffa 
 
 import { CalendarioModule } from './components/calendario/calendario.module';
