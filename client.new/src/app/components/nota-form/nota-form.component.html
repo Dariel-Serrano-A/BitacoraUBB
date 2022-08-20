@@ -3,14 +3,14 @@
   <div class="card">
       <div class="card-body">
           <form >
-              <h4 class="d-flex justify-content-center mb-3"> Notas Rápidas</h4>
+              <h4 class="d-flex justify-content-center mb-3"> {{ titulo_nota }}</h4>
               <div class="form-group">
                   Título:
-                  <input style="background-color:#D3DBDE ; color: #0040B0;" type="text" name="titulonota" [(ngModel)]="nota.titulo" placeholder='Ingrese titulo' class="form-control">
+                  <input style="background-color: #ffe8aa ; color: black;" type="text" name="titulonota" [(ngModel)]="nota.titulo" placeholder='Ingrese titulo' class="form-control">
               </div>
               <div class="form-group my-3">
                   Descripción:
-                  <textarea style="background-color: #D3DBDE ; color: #0040B0;" name="descripcionnota" [(ngModel)]="nota.contenido" placeholder="Ejemplo: Esta es mi descripcion"  rows="3" class="form-control"></textarea>
+                  <textarea style="background-color: #ffe8aa ; color: black;" name="descripcionnota" [(ngModel)]="nota.contenido" placeholder="Ejemplo: Esta es mi descripcion"  rows="3" class="form-control"></textarea>
               </div>
               <div class="d-flex align-items-center">
                   <a [routerLink]="['/notas']" class="form-control btn btn-danger btn-block">

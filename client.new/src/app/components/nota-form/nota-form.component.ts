@@ -19,7 +19,7 @@ export class NotaFormComponent implements OnInit {
   };
 
   edit: boolean = false;
-  titulo_bitacora: string = 'Registro de Nota';
+  titulo_nota: string = 'Registro de Nota';
 
 
   constructor( private notaService: NotasService, private router: Router, private activatedRoute: ActivatedRoute) { }
@@ -32,7 +32,7 @@ export class NotaFormComponent implements OnInit {
         (res: any = [])=> {
           this.nota=res[0];
           this.edit = true;
-          this.titulo_bitacora = 'Edición de Nota';
+          this.titulo_nota = 'Edición de Nota';
         },
         err=> {
           console.error(err)

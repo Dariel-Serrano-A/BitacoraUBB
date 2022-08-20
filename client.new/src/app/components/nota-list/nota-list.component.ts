@@ -18,25 +18,14 @@ export class NotaListComponent implements OnInit {
   constructor(private notasServices: NotasService) { }
 
   ngOnInit(): void {
-    this.dtOptions = {
-      language:{
-        url: "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
-      },
-      pagingType: 'full_numbers',
-      pageLength: 5
-    };
     this.getNotas();
   }
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-  }
+
   getNotas(){
     this.notasServices.getNotas()
     .subscribe(
       (res: any) => {
         this.notas = res;
-        // Llamando a DT trigger para manualmente renderizar la tabla
-        this.dtTrigger.next(void 0);
       },
       err=> {
         console.error(err)

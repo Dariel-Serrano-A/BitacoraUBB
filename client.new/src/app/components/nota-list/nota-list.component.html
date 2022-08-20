@@ -14,13 +14,16 @@
               <div class="card-body">
                 <p>{{nota.contenido}}</p>
                 <a [routerLink]="['/notas/detail', nota.idnotas]" class="btn btn-success btn-block">
-                  <i class="fa-solid fa-magnifying-glass-plus"></i></a><a [routerLink]="['/notas/edit', nota.id]" class="btn btn-info btn-block">
-                    <i class="fa-solid fa-pen-to-square"></i></a>
-                    <button class="btn btn-danger" (click)="deleteNota(nota.id)">
-                      <i class="far fa-trash-alt"></i>
-                    </button> 
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                </a>
+                <a [routerLink]="['/notas/edit', nota.idnotas]" class="btn btn-info btn-block">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+                <button class="btn btn-danger" (click)="deleteNota(nota.idnotas)">
+                  <i class="far fa-trash-alt"></i>
+                </button> 
               </div>
-            </div>
+            </div> 
           </div>
         </div>
       </div>
