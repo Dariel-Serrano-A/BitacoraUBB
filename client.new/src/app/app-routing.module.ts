@@ -33,7 +33,6 @@ const routes: Routes = [
     path: 'bitacoras/detail/:idbitacora',
     component: BitacoraDetailComponent
   },
-
   {
     path: 'calendario',
     component: CalendarioComponent

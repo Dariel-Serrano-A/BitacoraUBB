@@ -17,4 +17,5 @@ exports.default = {
         database: 'G7taller_bd'
     }
     
-} */ 
+} */
+/* Heroku pass: U@er7Grupo7 */ 

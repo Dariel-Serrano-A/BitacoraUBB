@@ -8,6 +8,7 @@ export default {
     }
     
 }
+
 /* export default {
 
     database: {
@@ -18,3 +19,5 @@ export default {
     }
     
 } */
+
+/* Heroku pass: U@er7Grupo7 */

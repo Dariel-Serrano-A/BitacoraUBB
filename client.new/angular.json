@@ -16,7 +16,7 @@
             "allowedCommonJsDependencies": [
               "lodash"
            ],
-            "outputPath": "dist/client.new",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -41,23 +41,15 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+              "budgets": [ 
+                { "type": "initial",
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb" 
                 },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
+                { "type": "anyComponentStyle",
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb" 
+                } 
               ],
               "outputHashing": "all"
             },

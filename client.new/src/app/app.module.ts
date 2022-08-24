@@ -22,14 +22,15 @@ import { NotaFormComponent } from './components/nota-form/nota-form.component';
 import { NotaListComponent } from './components/nota-list/nota-list.component';
 import { NotasService } from './services/notas.service';
 import { NotaDetailComponent } from './components/nota-detail/nota-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     BitacoraFormComponent,
     BitacoraListComponent,
-    BitacoraDetailComponent
-    ,NotaFormComponent,
+    BitacoraDetailComponent,
+    NotaFormComponent,
     NotaListComponent,
     NotaDetailComponent
   ],
