@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class BitacorasService {
 
-  API_URI = 'http://localhost:1092/api'
+  API_URI = 'http://146.83.198.35:1092/api'
 
   constructor(private http: HttpClient) { }
 

@@ -1,13 +1,15 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
+/* export default {
+
     database: {
         host: 'mysqltrans.face.ubiobio.cl',
         user: 'G7taller',
         password: 'G7taller1088',
         database: 'G7taller_bd'
     }
-};
+    
+} */
+Object.defineProperty(exports, "__esModule", { value: true });
 /* export default {
 
     database: {
@@ -18,4 +20,14 @@ exports.default = {
     }
     
 } */
-/* Heroku pass: U@er7Grupo7 */ 
+exports.default = {
+    database: {
+        host: 'remotemysql.com',
+        user: 'SWNloUumgM',
+        password: 'dvU47Cv2PI',
+        database: 'SWNloUumgM'
+    }
+};
+/* Heroku pass: upKeA*j6F2sGULqiz*kt
+   Hosting web pass: U@er7Grupo7
+*/ 

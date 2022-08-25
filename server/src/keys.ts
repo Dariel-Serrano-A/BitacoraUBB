@@ -1,4 +1,4 @@
-export default {
+/* export default {
 
     database: {
         host: 'mysqltrans.face.ubiobio.cl',
@@ -7,7 +7,7 @@ export default {
         database: 'G7taller_bd'
     }
     
-}
+} */
 
 /* export default {
 
@@ -20,4 +20,17 @@ export default {
     
 } */
 
-/* Heroku pass: U@er7Grupo7 */
+export default {
+
+    database: {
+        host: 'remotemysql.com',
+        user: 'SWNloUumgM',
+        password: 'dvU47Cv2PI',
+        database: 'SWNloUumgM'
+    }
+    
+}
+
+/* Heroku pass: upKeA*j6F2sGULqiz*kt 
+   Hosting web pass: U@er7Grupo7
+*/
