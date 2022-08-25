@@ -2,9 +2,9 @@ import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 
-import indexRoutes from './routes/indexRoutes';
-import bitacorasRoutes from './routes/bitacorasRoutes';
-import notasRoutes from './routes/notasRoutes';
+import indexRoutes from './api/indexRoutes';
+import bitacorasRoutes from './api/bitacorasRoutes';
+import notasRoutes from './api/notasRoutes';
 class Server {
     public app: Application;  
     constructor(){         
