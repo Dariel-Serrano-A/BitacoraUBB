@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class NotasService {
 
-  API_URI = 'http://146.83.198.35:1092/api'
+  API_URI = 'http://127.0.0.1:1092/api'
 
   constructor(private http: HttpClient) { }
 
