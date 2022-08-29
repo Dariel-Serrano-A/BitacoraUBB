@@ -30,14 +30,10 @@ export class NotasService {
   }
 
   saveNotas (Notas: Nota){
-    console.log("API/INSERT");
-    console.log(Notas);
     return this.http.post(`${this.API_URI}/notas`,Notas);
   }
 
   updateNotas (id: String|number|undefined, updatedNotas: Nota): Observable <Nota> {
-    console.log("API/update");
-    console.log(updatedNotas);
     return this.http.put(`${this.API_URI}/Notas/${id}`,updatedNotas);
   }
 }

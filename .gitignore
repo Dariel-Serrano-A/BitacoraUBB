@@ -1,0 +1,5 @@
+#ignorar credenciales
+server/src/keys.ts
+
+#ignorar credenciales
+server/build/keys.js
