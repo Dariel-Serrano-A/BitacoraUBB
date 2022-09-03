@@ -67,9 +67,9 @@ class BitacorasController {
                 response[0]=false;
                 response[1]='Error en descripcion de actividad';
                 res.json(response);
-            } else if(fields.descripcionbitacora.length>500){
+            } else if(fields.descripcionbitacora.length>1500){
                 response[0]=false;
-                response[1]='Descripcion de actividad supera limite de 500 caracteres';
+                response[1]='Descripcion de actividad supera limite de 1500 caracteres';
                 res.json(response);
             } else if(!fields.encompaniade || fields.encompaniade.length<=0 || !validarTexto(fields.encompaniade)){
                 response[0]=false;
@@ -116,9 +116,9 @@ class BitacorasController {
                 response[0]=false;
                 response[1]='Error en descripcion de actividad';
                 res.json(response);
-            } else if(fields.descripcionbitacora.length>500 ){
+            } else if(fields.descripcionbitacora.length>1500 ){
                 response[0]=false;
-                response[1]='Descripcion de actividad supera limite de 500 caracteres';
+                response[1]='Descripcion de actividad supera limite de 1500 caracteres';
                 res.json(response);
             } else if(!fields.encompaniade || fields.encompaniade.length<=0 || !validarTexto(fields.encompaniade as string)){
                 response[0]=false;
