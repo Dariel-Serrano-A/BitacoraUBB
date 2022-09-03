@@ -1,41 +1,50 @@
 <div class="col-md-4 offset-md-4">
     <div class="card">
         <div class="card-body">
-            <form >
+            <form method="post" id="formid" enctype="multipart/form-data">
                 <h4 class="d-flex justify-content-center mb-3"> {{titulo_bitacora}} </h4>
                 <div class="form-group">
                     Duracion:
-                    <input type="text" name="duracionactividad" [(ngModel)]="bitacora.duracionactividad" placeholder='Ingrese duracion sin ":"' class="form-control">
+                    <input type="text" name="duracionactividad" [(ngModel)]="bitacora.duracionactividad" placeholder='Ejemplo, 100 o 5:00' class="form-control col-md-4" (keyup)="cambiarDuracion($event)" maxlength="5">
                 </div>
                 <div class="form-group my-3">
                     Descripcion:
-                    <textarea name="descripcionbitacora" [(ngModel)]="bitacora.descripcionbitacora" placeholder="Ejemplo: Esta es mi descripcion"  rows="3" class="form-control"></textarea>
+                    <textarea type="text" name="descripcionbitacora" [(ngModel)]="bitacora.descripcionbitacora" placeholder="Ejemplo: Esta es mi descripcion"  rows="3" class="form-control" (keyup)="cambiarTexto($event)" maxlength="500"></textarea>
                 </div>
                 <div class="form-group my-3">
                     Seleccione, es en compañia de:
                     <select name="encompaniade" [(ngModel)]="bitacora.encompaniade" class="form-control">
-                        <option selected>jefatura</option>                        
-                        <option>otros practicantes</option>
-                        <option>grupo</option>
-                        <option>en forma individual</option>
-                        <option>otra compañia</option>
+                        <option selected>Jefatura</option>                        
+                        <option>Otros practicantes</option>
+                        <option>Grupo</option>
+                        <option>En forma individual</option>
+                        <option>Otra compañia</option>
                     </select>
                 </div>
                 <div class="form-group my-3">
                     Seleccione, la actividad corresponde a:
                     <select name="actividadcorrespondea" [(ngModel)]="bitacora.actividadcorrespondea" class="form-control">                        
-                        <option selected>reunion</option>                        
-                        <option>busqueda informacion</option>
-                        <option>estudio software</option>
-                        <option>estudio hardware</option>
-                        <option>trabajo terreno</option>
-                        <option>exposicion</option>
-                        <option>lectura de manuales</option>
-                        <option>estudios de framework</option>
-                        <option>instalacion software</option>
-                        <option>instalacion hardware</option>
-                        <option>otra actividad</option>
+                        <option selected>Reunion</option>                        
+                        <option>Busqueda informacion</option>
+                        <option>Estudio software</option>
+                        <option>Estudio hardware</option>
+                        <option>Trabajo terreno</option>
+                        <option>Exposicion</option>
+                        <option>Lectura de manuales</option>
+                        <option>Estudios de framework</option>
+                        <option>Instalacion software</option>
+                        <option>Instalacion hardware</option>
+                        <option>Otra actividad</option>
                     </select>
+                </div>
+                <div class="form-group my-3">
+                    <input type="file" class="file-input" name="archivo" (change)="archivoSeleccionado($event)" #fileUpload>
+                    <div class="file-upload">
+                        {{bitacora.nombreArchivo || "Archivo no cargado aún."}}
+                        <button class="btn btn-info upload-btn mx-2" (click)="fileUpload.click()">
+                            <i class="fa-sharp fa-solid fa-paperclip"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="d-flex align-items-center">
                     <a [routerLink]="['/bitacoras']" class="form-control btn btn-danger btn-block">

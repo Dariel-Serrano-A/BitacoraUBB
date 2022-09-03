@@ -20,9 +20,11 @@ export class BitacoraDetailComponent implements OnInit {
     encompaniade: '' ,
     actividadcorrespondea: '',
     usuario_idusuario: 1,
-    created_at: undefined
-   };
-   informacion: Informacion = {
+    created_at: '', 
+    nombreArchivo: '',
+    archivo: undefined
+  };
+    informacion: Informacion = {
     idusuario: 0,
     nombre: '',
     apellido: '',

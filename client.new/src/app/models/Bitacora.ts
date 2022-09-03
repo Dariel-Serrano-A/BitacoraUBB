@@ -6,5 +6,7 @@ export interface  Bitacora{
     actividadcorrespondea?: string;
     usuario_idusuario?: number;
     created_at?: string;
+    nombreArchivo?: string;
+    archivo?: File;
 }
 

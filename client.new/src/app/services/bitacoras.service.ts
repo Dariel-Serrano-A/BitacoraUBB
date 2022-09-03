@@ -29,11 +29,11 @@ export class BitacorasService {
     return this.http.delete(`${this.API_URI}/bitacoras/${id}`);
   }
 
-  saveBitacora (bitacora: Bitacora){
+  saveBitacora (bitacora: FormData){
     return this.http.post(`${this.API_URI}/bitacoras`,bitacora);
   }
 
-  updateBitacora (id: String|number|undefined, updatedBitacora: Bitacora): Observable <Bitacora> {
+  updateBitacora (id: String|number|undefined, updatedBitacora: FormData): Observable <Bitacora> {
     return this.http.put(`${this.API_URI}/bitacoras/${id}`,updatedBitacora);
   }
 

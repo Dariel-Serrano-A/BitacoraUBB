@@ -20,13 +20,16 @@ export class BitacoraFormComponent implements OnInit {
     encompaniade: '' ,
     actividadcorrespondea: '',
     usuario_idusuario: 1,
-    created_at: ''
-   };
-
+    created_at: '', 
+    nombreArchivo: '',
+    archivo: undefined
+  };
+   
   
-
+  
   edit: boolean = false;
   titulo_bitacora: string = 'Registro de Bitácora'
+  horaOdia: string = ''
 
   constructor(private bitacoraService: BitacorasService, private router:Router, private activatedRoute:ActivatedRoute) { }
 
@@ -39,6 +42,8 @@ export class BitacoraFormComponent implements OnInit {
           this.bitacora=res[0];
           this.edit = true; 
           this.titulo_bitacora = 'Edición de Bitácora';
+          this.bitacora.encompaniade=this.capitalizeFirstLetter(this.bitacora.encompaniade)
+          this.bitacora.actividadcorrespondea=this.capitalizeFirstLetter(this.bitacora.actividadcorrespondea)
         },
         err=> {
           console.error(err)
@@ -56,6 +61,10 @@ export class BitacoraFormComponent implements OnInit {
    saveNewBitacora(){
     delete this.bitacora.idbitacora;
     this.bitacora.created_at = new Date().toLocaleDateString("es-CL",  {timeZone: "America/Santiago"}).split('-').reverse().join('-');
+    this.bitacora.duracionactividad=this.bitacora.duracionactividad?.replace(/\:/,'')
+    this.bitacora.duracionactividad=this.corregirDuracion(this.bitacora.duracionactividad)
+    this.bitacora.encompaniade=this.bitacora.encompaniade?.toLowerCase()
+    this.bitacora.actividadcorrespondea=this.bitacora.actividadcorrespondea?.toLowerCase()
     if (!this.bitacora.duracionactividad || this.bitacora.duracionactividad.length<=0){
       Swal.fire({
         icon: 'error',
@@ -68,11 +77,11 @@ export class BitacoraFormComponent implements OnInit {
         title: 'Oops...',
         text: `Los caracteres de duración de actividad no son validos`,         
     })
-    } else if (this.bitacora.duracionactividad.length>500){
+    } else if (this.bitacora.duracionactividad.length>1500){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Descripción de actividad supera límite de 500 caracteres`,         
+        text: `Descripción de actividad supera límite de 1500 caracteres`,         
     })
     } else if (!this.bitacora.descripcionbitacora || this.bitacora.descripcionbitacora.length<=0){
       Swal.fire({
@@ -110,8 +119,12 @@ export class BitacoraFormComponent implements OnInit {
         title: 'Oops...',
         text: `Los caracteres de tipo de actividad no son validos`,         
     })
-    }else{
-      this.bitacoraService.saveBitacora(this.bitacora)
+    }else {
+      const formData = new FormData(); //creacion de formulario por codigo
+      for ( var key in this.bitacora ) { //for para agregar llave/valor al form
+        formData.append(key, (this.bitacora as any)[key]); //agregar llave/valor con los datos de bitacora
+      }
+      this.bitacoraService.saveBitacora(formData)
       .subscribe(
         (res: any = [])=> {
           if(res[0]){
@@ -139,6 +152,10 @@ export class BitacoraFormComponent implements OnInit {
 
    updateBitacora(){
     delete this.bitacora.created_at;
+    this.bitacora.duracionactividad=this.bitacora.duracionactividad?.replace(/\:/,'')
+    this.bitacora.duracionactividad=this.corregirDuracion(this.bitacora.duracionactividad)
+    this.bitacora.encompaniade=this.bitacora.encompaniade?.toLowerCase()
+    this.bitacora.actividadcorrespondea=this.bitacora.actividadcorrespondea?.toLowerCase()
     if (!this.bitacora.duracionactividad || this.bitacora.duracionactividad.length<=0){
       Swal.fire({
         icon: 'error',
@@ -151,11 +168,11 @@ export class BitacoraFormComponent implements OnInit {
         title: 'Oops...',
         text: `Los caracteres de duración de actividad no son validos`,         
     })
-    } else if (this.bitacora.duracionactividad.length>500){
+    } else if (this.bitacora.duracionactividad.length>1500){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Descripción de actividad supera límite de 500 caracteres`,         
+        text: `Descripción de actividad supera límite de 1500 caracteres`,         
     })
     } else if (!this.bitacora.descripcionbitacora || this.bitacora.descripcionbitacora.length<=0){
       Swal.fire({
@@ -194,7 +211,11 @@ export class BitacoraFormComponent implements OnInit {
         text: `Los caracteres de tipo de actividad no son validos`,         
     })
     }else{
-      this.bitacoraService.updateBitacora(this.bitacora.idbitacora,this.bitacora)
+      const formData = new FormData(); //creacion de formulario por codigo
+      for ( var key in this.bitacora ) { //for para agregar llave/valor al form
+        formData.append(key, (this.bitacora as any)[key]); //agregar llave/valor con los datos de bitacora
+      }
+      this.bitacoraService.updateBitacora(this.bitacora.idbitacora,formData)
       .subscribe(
         (res: any = [])=> {
           if(res[0]){
@@ -219,17 +240,86 @@ export class BitacoraFormComponent implements OnInit {
     }
    }
 
+
   validarTexto(texto: string){
-    return /[a-zA-ZÀ-ÿ\u00f1\u00d1\, \./]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1\, \./]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1\, \./]+/g.test(texto);
+    return /([0-9a-zA-ZÀ-ÿ\u00f1\u00d1,./: \n]*)*/g.test(texto);
   }
 
   validarNumString(texto: string){
     return /^([0-9])*$/g.test(texto);
   }
+  corregirDuracion(texto: any){
+    if(texto.match(/^(\d{4})$/g)){
+      return texto.replace(/^(\d{4})$/g,'$1')
+    } else if(texto.match(/^(\d{3})$/g)){
+      return texto.replace(/^(\d{3})$/g,'0$1')
+    } else if(texto.match(/^(\d{2})$/g)){
+      return texto.replace(/^(\d{2})$/g,'00$1')
+    } else if (texto.match(/^(\d{1})$/g)){
+      return texto.replace(/^(\d{1})$/g,'000$1')
+    } return texto
+  }
+
+  cambiarDuracion(event: any){
+    event.target.value = event.target.value.replace(/\:/,'')
+    event.target.value = event.target.value.replace(/^0/,'')
+    if (event.target.value.match(/[^0-9]/ig)){
+      event.target.value = event.target.value.replace(event.target.value,'')
+    } else if(event.target.value.match(/^(\d{2})(\d{2})$/g)){
+      event.target.value = event.target.value.replace(/^(\d{2})(\d{2})$/g, '$1:$2')
+    } else if(event.target.value.match(/^(\d{1})(\d{2})$/g)){
+      event.target.value = event.target.value.replace(/^(\d{1})(\d{2})$/g, '$1:$2')
+    } else if(event.target.value.match(/^(\d{0})(\d{2})$/g)){
+      event.target.value = event.target.value.replace(/^(\d{0})(\d{2})$/g, ':$2')
+    } else if(event.target.value.match(/^(\d{0})(\d{1})$/g)){
+      event.target.value = event.target.value.replace(/^(\d{0})(\d{1})$/g, ':0$2')
+    } 
+  }
   
+  cambiarTexto(event: any){
+    event.target.value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
+    if(event.target.value.match(/^\d{1}/)){
+      event.target.value = event.target.value.replace(/^\d{1}/g,'')
+    } else if (event.target.value.match(/([^0-9a-zA-ZÀ-ÿ\u00f1\u00d1,./: \n]*)*/g)){
+      event.target.value = event.target.value.replace(/([^0-9a-zA-ZÀ-ÿ\u00f1\u00d1,./: \n]*)*/g,'')
+    }
+  }
 
+  archivoSeleccionado(event: any){
+    const file: File = event.target.files[0];
+    this.bitacora.nombreArchivo = file.name;
+    this.bitacora.archivo = file; // event.target.files;
+    //console.log(this.bitacora.archivo);
+  }
 
+  capitalizeFirstLetter(string: any) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-  
+/* ejemplo ded formeteo de rut 
+function cambiarRut(){
+  document.getElementById('rut').addEventListener('input', function(evt) {
+  let value = this.value.replace(/\./g, '').replace('-', '');
+  if (value.match(/[^0-9k]/ig)) {
+      value = value.replace(value, '');
+  }
+  if (value.match(/^(\d{2})(\d{3}){2}(\w{1})$/)) {
+      value = value.replace(/^(\d{2})(\d{3})(\d{3})(\w{1})$/, '$1.$2.$3-$4');
+  }
+  else if (value.match(/^(\d)(\d{3}){2}(\w{0,1})$/)) {
+      value = value.replace(/^(\d)(\d{3})(\d{3})(\w{0,1})$/, '$1.$2.$3-$4');
+  }
+  else if (value.match(/^(\d)(\d{3})(\d{0,2})$/)) {
+      value = value.replace(/^(\d)(\d{3})(\d{0,2})$/, '$1.$2.$3');
+  }
+  else if (value.match(/^(\d)(\d{0,2})$/)) {
+      value = value.replace(/^(\d)(\d{0,2})$/, '$1.$2');
+  }
+  this.value = value;
+  });
+} */
+
 
 }
+
+
