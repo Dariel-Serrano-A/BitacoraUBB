@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import path from 'path';
 
 import indexRoutes from './routes/indexRoutes';
 import bitacorasRoutes from './routes/bitacorasRoutes';
@@ -13,11 +14,12 @@ class Server {
         this.routes();
      }
     config(): void {
-        this.app.set('port', 1092);
+        this.app.set('port', 1092);     
         this.app.use(morgan('dev'));
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));
+        this.app.use('/uploads', express.static(path.resolve('uploads')))
     }
 
     routes(): void {
