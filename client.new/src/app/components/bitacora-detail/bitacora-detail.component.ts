@@ -73,5 +73,22 @@ export class BitacoraDetailComponent implements OnInit {
     }
 
   }
+   /* descarga(){
+    console.log(this.bitacora.nombreArchivo)
+    this.bitacoraService.descarga(this.bitacora.nombreArchivo)
+      .subscribe(
+        (res: any = [])=> {
+          res
+        },
+        err=> {
+          console.error(err)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${err[1]}`,                
+            });
+        }
+      )
+   } */
 
 }

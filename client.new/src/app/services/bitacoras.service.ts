@@ -17,6 +17,10 @@ export class BitacorasService {
     return this.http.get(`${this.API_URI}/bitacoras`);
   }
 
+/*   descarga (id: String|undefined){
+    return this.http.get(`http://127.0.0.1:1092/${id}`);
+  } */
+
   getBitacora (id: String){
     return this.http.get(`${this.API_URI}/bitacoras/${id}`);
   }

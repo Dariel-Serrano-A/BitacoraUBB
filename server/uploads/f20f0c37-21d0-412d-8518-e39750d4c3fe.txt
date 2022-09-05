@@ -1,0 +1,20 @@
+CREDENCIALES SERVER UBB:
+
+ - URL http://146.83.198.35:1091/bitacoras
+
+- NOMBRE BD, USUSARIO Y CONTRASEÑA
+host: 'mysqltrans.face.ubiobio.cl',
+user: 'G7taller',
+password: 'G7taller1088',
+database: 'G7taller_bd'
+
+
+CREDENCIALES SERVER EXTERNO 
+
+- URL https://bitacora-iwwq1j2hj-darielserrano.vercel.app/bitacoras
+
+- NOMBRE BD, USUSARIO Y CONTRASEÑA
+host: 'remotemysql.com',
+user: 'SWNloUumgM',
+password: 'dvU47Cv2PI',
+ database: 'SWNloUumgM'

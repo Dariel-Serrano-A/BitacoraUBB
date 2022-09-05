@@ -39,10 +39,12 @@
                     <p class="ptitle">La actividad corresponde a:</p>
                     <p class="border-bottom">{{bitacora.actividadcorrespondea | titlecase}}</p>
                 </div>    
-                <div class="form-group mb-2">
-                    <p class="ptitle">Nombre de archivo asociado:</p>
-                    <p class="border-bottom">{{bitacora.nombreArchivo | titlecase}}</p>
-                </div>             
+                <!-- <div *ngIf="bitacora.nombreArchivo?.length != 0" class="form-group mb-2">
+                    <p class="ptitle">Descarga de archivo asociado:</p>
+                    <button class="btn btn-info upload-btn mx-2" (click)="descarga()">
+                        <i class="fa-sharp fa-solid fa-paperclip">Descarga</i>
+                    </button>
+                </div>    -->          
                 <div class="d-flex align-items-center">
                     <a [routerLink]="['/bitacoras']" class="form-control btn btn-danger btn-block">
                         Volver

@@ -12,7 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const formidable_1 = __importDefault(require("formidable"));
+const fs_extra_1 = __importDefault(require("fs-extra"));
+const path_1 = __importDefault(require("path"));
 const database_1 = __importDefault(require("../database"));
 class BitacorasController {
     list(req, res) {
@@ -35,7 +36,7 @@ class BitacorasController {
             const { id } = req.params;
             const response = Array();
             try {
-                const [bitacora, fields] = yield database_1.default.query('SELECT * FROM bitacora WHERE idbitacora = ?', [id]);
+                const [bitacora] = yield database_1.default.query('SELECT * FROM bitacora WHERE idbitacora = ?', [id]);
                 return res.json(bitacora);
             }
             catch (error) {
@@ -63,46 +64,66 @@ class BitacorasController {
         });
     }
     create(req, res) {
+        var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
-            const form = (0, formidable_1.default)({
-                multiples: true
-            });
-            form.parse(req, (err, fields, files) => __awaiter(this, void 0, void 0, function* () {
-                const response = Array();
-                //Minusculas
-                fields.encompaniade = fields.encompaniade.toLowerCase();
-                fields.actividadcorrespondea = fields.actividadcorrespondea.toLowerCase();
-                //Capitalizacion de texto
-                fields.descripcionbitacora = capitalizeFirstLetter(fields.descripcionbitacora);
-                //Validaciones
-                if (!fields.duracionactividad || fields.duracionactividad.length <= 0 || !validarNumString(fields.duracionactividad)) {
-                    response[0] = false;
-                    response[1] = 'Error en duracion de actividad';
-                    res.json(response);
-                }
-                else if (!fields.descripcionbitacora || fields.descripcionbitacora.length <= 0 || !validarTexto(fields.descripcionbitacora)) {
-                    response[0] = false;
-                    response[1] = 'Error en descripcion de actividad';
-                    res.json(response);
-                }
-                else if (fields.descripcionbitacora.length > 1500) {
-                    response[0] = false;
-                    response[1] = 'Descripcion de actividad supera limite de 1500 caracteres';
-                    res.json(response);
-                }
-                else if (!fields.encompaniade || fields.encompaniade.length <= 0 || !validarTexto(fields.encompaniade)) {
-                    response[0] = false;
-                    response[1] = 'Error en tipo de compañia de actividad';
-                    res.json(response);
-                }
-                else if (!fields.actividadcorrespondea || fields.actividadcorrespondea.length <= 0 || !validarTexto(fields.actividadcorrespondea)) {
-                    response[0] = false;
-                    response[1] = 'Error en tipo de actividad de actividad';
-                    res.json(response);
-                }
-                else { //Insercion de datos
+            const allowedExtensions = /(.jpg|.jpeg|.png|.pdf|.txt)$/i;
+            const response = Array();
+            //Minusculas
+            req.body.encompaniade = req.body.encompaniade.toLowerCase();
+            req.body.actividadcorrespondea = req.body.actividadcorrespondea.toLowerCase();
+            //Capitalizacion de texto
+            req.body.descripcionbitacora = capitalizeFirstLetter(req.body.descripcionbitacora);
+            //Validaciones
+            if (!req.body.duracionactividad || req.body.duracionactividad.length <= 0) {
+                response[0] = false;
+                response[1] = 'No se ha enviado duración de actividad';
+                res.json(response);
+            }
+            else if (!validarNumString(req.body.duracionactividad)) {
+                response[0] = false;
+                response[1] = 'Los caracteres de duración de actividad no son válidos';
+                res.json(response);
+            }
+            else if (!req.body.descripcionbitacora || req.body.descripcionbitacora.length <= 0) {
+                response[0] = false;
+                response[1] = 'No se ha enviado descripción de actividad';
+                res.json(response);
+            }
+            else if (!validarTexto(req.body.descripcionbitacora)) {
+                response[0] = false;
+                response[1] = 'Los caracteres de descripción de actividad no son válidos';
+                res.json(response);
+            }
+            else if (req.body.descripcionbitacora.length > 1500) {
+                response[0] = false;
+                response[1] = 'La descripcion de actividad supera limite de 1500 caracteres';
+                res.json(response);
+            }
+            else if (!req.body.encompaniade || req.body.encompaniade.length <= 0) {
+                response[0] = false;
+                response[1] = 'No se ha enviado la compañía de actividad';
+                res.json(response);
+            }
+            else if (!validarTexto(req.body.encompaniade)) {
+                response[0] = false;
+                response[1] = 'Los caracteres de compañía de actividad no son válidos';
+                res.json(response);
+            }
+            else if (!req.body.actividadcorrespondea || req.body.actividadcorrespondea.length <= 0) {
+                response[0] = false;
+                response[1] = 'No se ha enviado el tipo de actividad';
+                res.json(response);
+            }
+            else if (!validarTexto(req.body.actividadcorrespondea)) {
+                response[0] = false;
+                response[1] = 'Los caracteres de tipo de actividad no son válidos';
+                res.json(response);
+            }
+            else if (req.file) {
+                if (allowedExtensions.exec((_a = req.file) === null || _a === void 0 ? void 0 : _a.originalname)) {
+                    req.body.nombreArchivo = (_b = req.file) === null || _b === void 0 ? void 0 : _b.path;
                     try {
-                        yield database_1.default.query('INSERT INTO bitacora set ?', fields); //consulta sql
+                        yield database_1.default.query('INSERT INTO bitacora set ?', req.body); //consulta sql
                         response[0] = true;
                         response[1] = 'La bitacora fue guardada con exito';
                         res.json(response);
@@ -114,71 +135,119 @@ class BitacorasController {
                         res.json(response);
                     }
                 }
-            }));
+                else {
+                    response[0] = false;
+                    response[1] = 'El archivo no tiene una extencion valida, permitidas .jpg .jpeg .png .pdf .txt';
+                    res.json(response);
+                }
+                return;
+            }
+            else {
+                //Insercion de datos
+                req.body.nombreArchivo = '';
+                try {
+                    yield database_1.default.query('INSERT INTO bitacora set ?', req.body); //consulta sql
+                    response[0] = true;
+                    response[1] = 'La bitacora fue guardada con exito';
+                    res.json(response);
+                }
+                catch (error) {
+                    console.error(error);
+                    response[0] = false;
+                    response[1] = 'La bitacora no pudo ser guardada';
+                    res.json(response);
+                }
+            }
         });
     }
     update(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             const id = req.params.id;
-            const form = (0, formidable_1.default)({
-                multiples: true
-            });
-            form.parse(req, (err, fields, files) => __awaiter(this, void 0, void 0, function* () {
-                const response = Array();
-                //Minusculas
-                fields.encompaniade = fields.encompaniade.toLowerCase();
-                fields.actividadcorrespondea = fields.actividadcorrespondea.toLowerCase();
-                //Capitalizacion de texto
-                fields.descripcionbitacora = capitalizeFirstLetter(fields.descripcionbitacora);
-                //Validaciones
-                if (!fields.duracionactividad || fields.duracionactividad.length <= 0 || !validarNumString(fields.duracionactividad)) {
-                    response[0] = false;
-                    response[1] = 'Error en duracion de actividad';
+            const response = Array();
+            //Minusculas
+            req.body.encompaniade = req.body.encompaniade.toLowerCase();
+            req.body.actividadcorrespondea = req.body.actividadcorrespondea.toLowerCase();
+            req.body.nombreArchivo = (_a = req.file) === null || _a === void 0 ? void 0 : _a.originalname;
+            //Capitalizacion de texto
+            req.body.descripcionbitacora = capitalizeFirstLetter(req.body.descripcionbitacora);
+            //Validaciones
+            if (!req.body.duracionactividad || req.body.duracionactividad.length <= 0) {
+                response[0] = false;
+                response[1] = 'No se ha enviado duración de actividad';
+                res.json(response);
+            }
+            else if (!validarNumString(req.body.duracionactividad)) {
+                response[0] = false;
+                response[1] = 'Los caracteres de duración de actividad no son válidos';
+                res.json(response);
+            }
+            else if (!req.body.descripcionbitacora || req.body.descripcionbitacora.length <= 0) {
+                response[0] = false;
+                response[1] = 'No se ha enviado descripción de actividad';
+                res.json(response);
+            }
+            else if (!validarTexto(req.body.descripcionbitacora)) {
+                response[0] = false;
+                response[1] = 'Los caracteres de descripción de actividad no son válidos';
+                res.json(response);
+            }
+            else if (req.body.descripcionbitacora.length > 1500) {
+                response[0] = false;
+                response[1] = 'La descripcion de actividad supera limite de 1500 caracteres';
+                res.json(response);
+            }
+            else if (!req.body.encompaniade || req.body.encompaniade.length <= 0) {
+                response[0] = false;
+                response[1] = 'No se ha enviado la compañía de actividad';
+                res.json(response);
+            }
+            else if (!validarTexto(req.body.encompaniade)) {
+                response[0] = false;
+                response[1] = 'Los caracteres de compañía de actividad no son válidos';
+                res.json(response);
+            }
+            else if (!req.body.actividadcorrespondea || req.body.actividadcorrespondea.length <= 0) {
+                response[0] = false;
+                response[1] = 'No se ha enviado el tipo de actividad';
+                res.json(response);
+            }
+            else if (!validarTexto(req.body.actividadcorrespondea)) {
+                response[0] = false;
+                response[1] = 'Los caracteres de tipo de actividad no son válidos';
+                res.json(response);
+            }
+            else if (req.body.nombreArchivo) {
+                response[0] = false;
+                response[1] = 'Los caracteres de tipo de actividad no son válidos';
+                res.json(response);
+            }
+            else { //Actualizacion de datos
+                try {
+                    yield database_1.default.query('UPDATE bitacora set ? WHERE idbitacora = ?', [req.body, id]);
+                    response[0] = true;
+                    response[1] = 'La bitacora fue actualizada con exito';
                     res.json(response);
                 }
-                else if (!fields.descripcionbitacora || fields.descripcionbitacora.length <= 0 || !validarTexto(fields.descripcionbitacora)) {
+                catch (error) {
+                    console.error(error);
                     response[0] = false;
-                    response[1] = 'Error en descripcion de actividad';
+                    response[1] = 'La bitacora no pudo ser actualizada';
                     res.json(response);
                 }
-                else if (fields.descripcionbitacora.length > 1500) {
-                    response[0] = false;
-                    response[1] = 'Descripcion de actividad supera limite de 1500 caracteres';
-                    res.json(response);
-                }
-                else if (!fields.encompaniade || fields.encompaniade.length <= 0 || !validarTexto(fields.encompaniade)) {
-                    response[0] = false;
-                    response[1] = 'Error en tipo de compañia de actividad';
-                    res.json(response);
-                }
-                else if (!fields.actividadcorrespondea || fields.actividadcorrespondea.length <= 0 || !validarTexto(fields.actividadcorrespondea)) {
-                    response[0] = false;
-                    response[1] = 'Error en tipo de actividad de actividad';
-                    res.json(response);
-                }
-                else { //Actualizacion de datos
-                    try {
-                        yield database_1.default.query('UPDATE bitacora set ? WHERE idbitacora = ?', [fields, id]);
-                        response[0] = true;
-                        response[1] = 'La bitacora fue actualizada con exito';
-                        res.json(response);
-                    }
-                    catch (error) {
-                        console.error(error);
-                        response[0] = false;
-                        response[1] = 'La bitacora no pudo ser actualizada';
-                        res.json(response);
-                    }
-                }
-            }));
+            }
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const id = req.params.id;
+            const { id } = req.params;
             const response = Array();
             try {
                 //Eliminacion de datos
+                const [bitacora] = yield database_1.default.query('SELECT * FROM bitacora WHERE idbitacora = ?', [id]);
+                if (bitacora[0].nombreArchivo) {
+                    yield fs_extra_1.default.unlink(path_1.default.resolve(bitacora[0].nombreArchivo));
+                }
                 yield database_1.default.query('DELETE FROM bitacora WHERE idbitacora = ?', [id]);
                 response[0] = true;
                 response[1] = 'La bitacora fue eliminada';
