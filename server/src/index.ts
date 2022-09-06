@@ -7,6 +7,8 @@ import indexRoutes from './routes/indexRoutes';
 import bitacorasRoutes from './routes/bitacorasRoutes';
 import notasRoutes from './routes/notasRoutes';
 import recordatoriosRoutes from './routes/recordatoriosRoutes';
+import calendarioRoutes from './routes/calendarioRoutes';
+
 class Server {
     public app: Application;  
     constructor(){         
@@ -28,6 +30,7 @@ class Server {
         this.app.use('/api/bitacoras',bitacorasRoutes);
         this.app.use('/api/notas', notasRoutes);
         this.app.use('/api/recordatorio', recordatoriosRoutes);
+        this.app.use('/api/calendario', calendarioRoutes);
     }
 
     start (): void {

@@ -1,3 +1,4 @@
+//Parte Dariel
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,6 +31,25 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { RecordatoriosService } from './services/recordatorios.service';
+import { ScheduleAllModule, RecurrenceEditorAllModule } from '@syncfusion/ej2-angular-schedule';
+import {loadCldr, setCulture, setCurrencyCode} from '@syncfusion/ej2-base';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+import { DropDownButtonAllModule } from '@syncfusion/ej2-angular-splitbuttons';
+
+import { TreeViewModule } from '@syncfusion/ej2-angular-navigations';
+
+import { DropDownListAllModule, MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
+
+import { MaskedTextBoxModule, UploaderAllModule } from '@syncfusion/ej2-angular-inputs';
+
+import { ToolbarAllModule, ContextMenuAllModule } from '@syncfusion/ej2-angular-navigations';
+
+import { ButtonAllModule, CheckBoxAllModule, SwitchAllModule } from '@syncfusion/ej2-angular-buttons';
+
+import { DatePickerAllModule, TimePickerAllModule, DateTimePickerAllModule } from '@syncfusion/ej2-angular-calendars';
+
+import { NumericTextBoxAllModule, TextBoxAllModule } from '@syncfusion/ej2-angular-inputs';
+
 
 
 
@@ -45,7 +65,11 @@ import { RecordatoriosService } from './services/recordatorios.service';
     NotaDetailComponent,
     RecordatorioComponent,
     RecordatorioListComponent,
-    RecordatorioFormComponent
+    RecordatorioFormComponent,
+    HomeComponent,
+    LoginComponent,
+    RegistroComponent,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +78,15 @@ import { RecordatoriosService } from './services/recordatorios.service';
     FormsModule,
     DataTablesModule,
     BrowserAnimationsModule,
-  ],
+    BrowserModule, ScheduleAllModule, RecurrenceEditorAllModule,
+    DropDownButtonAllModule,
+    TreeViewModule,
+    DropDownListAllModule, MultiSelectAllModule,
+    MaskedTextBoxModule, UploaderAllModule,
+    ToolbarAllModule, ContextMenuAllModule,
+    ButtonAllModule, CheckBoxAllModule, SwitchAllModule,
+    DatePickerAllModule, TimePickerAllModule, DateTimePickerAllModule,
+    NumericTextBoxAllModule, TextBoxAllModule],
   providers: [
     BitacorasService
     ,NotasService,
