@@ -7,11 +7,11 @@
                 <h4 class="d-flex justify-content-center mb-3">Detalle Recordatorio</h4>
                 <div class="form-group my-3">
                     <h5>Título:</h5>
-                    <p class="border-bottom fs-5">{{ recordatorio.titulorecordatorio| titlecase}}</p>
+                    <p class="border-bottom fs-5">{{ recordatorios.titulorecordatorio| titlecase}}</p>
                 </div>
                 <div class="form-group my-3">
                     <h5>Descripción:</h5>
-                    <p class="border-bottom fs-5">{{recordatorio.descripcionrecordatorio}}</p>
+                    <p class="border-bottom fs-5">{{recordatorios.descripcionrecordatorio}}</p>
                 </div>
                 <div class="d-flex align-items-center">
                     <a [routerLink]="['/recordatorio']" class="form-control btn btn-danger btn-block">
