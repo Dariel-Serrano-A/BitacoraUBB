@@ -11,7 +11,6 @@ const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const bitacorasRoutes_1 = __importDefault(require("./routes/bitacorasRoutes"));
 const notasRoutes_1 = __importDefault(require("./routes/notasRoutes"));
 const recordatoriosRoutes_1 = __importDefault(require("./routes/recordatoriosRoutes"));
-const calendarioRoutes_1 = __importDefault(require("./routes/calendarioRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -31,7 +30,7 @@ class Server {
         this.app.use('/api/bitacoras', bitacorasRoutes_1.default);
         this.app.use('/api/notas', notasRoutes_1.default);
         this.app.use('/api/recordatorio', recordatoriosRoutes_1.default);
-        this.app.use('/api/calendario', calendarioRoutes_1.default);
+        this.app.use('/api/calendario', indexRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

@@ -30,7 +30,7 @@ class Server {
         this.app.use('/api/bitacoras',bitacorasRoutes);
         this.app.use('/api/notas', notasRoutes);
         this.app.use('/api/recordatorio', recordatoriosRoutes);
-        this.app.use('/api/calendario', calendarioRoutes);
+        this.app.use('/api/calendario', indexRoutes);
     }
 
     start (): void {
