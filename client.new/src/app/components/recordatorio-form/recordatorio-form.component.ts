@@ -35,7 +35,6 @@ export class RecordatorioFormComponent implements OnInit {
           this.recordatorio=res[0];
           this.edit = true;
           this.titulo_recordatorio = 'Edición de Recordatorio';
-          this.recordatorio.email=this.capitalizeFirstLetter(this.recordatorio.email)
         },
         err=> {
           console.error(err)
@@ -53,8 +52,6 @@ export class RecordatorioFormComponent implements OnInit {
 
     delete this.recordatorio.idrecordatorio;
     this.recordatorio.fecharecordatorio = new Date().toLocaleDateString("es-CL",  {timeZone: "America/Santiago"}).split('-').reverse().join('-');
-    this.recordatorio.horarecordatorio=this.recordatorio.horarecordatorio?.replace(/\:/,'')
-    this.recordatorio.horarecordatorio=this.corregirDuracion(this.recordatorio.horarecordatorio)
     if (!this.recordatorio.titulorecordatorio || this.recordatorio.titulorecordatorio.length<=0){
       Swal.fire({
         icon: 'error',
@@ -116,11 +113,9 @@ export class RecordatorioFormComponent implements OnInit {
     )
   }
 }
-updateRecordatorio(){
+updateRecordatorios(){
   delete this.recordatorio.idrecordatorio;
   this.recordatorio.fecharecordatorio = new Date().toLocaleDateString("es-CL",  {timeZone: "America/Santiago"}).split('-').reverse().join('-');
-  this.recordatorio.horarecordatorio=this.recordatorio.horarecordatorio?.replace(/\:/,'')
-  this.recordatorio.horarecordatorio=this.corregirDuracion(this.recordatorio.horarecordatorio)
     if (!this.recordatorio.titulorecordatorio || this.recordatorio.titulorecordatorio.length<=0){
       Swal.fire({
         icon: 'error',
@@ -224,8 +219,5 @@ updateRecordatorio(){
     } else if (event.target.value.match(/([^0-9a-zA-ZÀ-ÿ\u00f1\u00d1,./: \n]*)*/g)){
       event.target.value = event.target.value.replace(/([^0-9a-zA-ZÀ-ÿ\u00f1\u00d1,./: \n]*)*/g,'')
     }
-  }
-  capitalizeFirstLetter(string: any) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }

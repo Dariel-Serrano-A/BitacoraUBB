@@ -12,10 +12,12 @@
 
               </div>
               <div class="card-body">
+                <p>Hora de aviso </p>
+                <p>{{recordatorio.horarecordatorio}}</p>
+                <p>Contenido</p>
                 <p>{{recordatorio.descripcionrecordatorio}}</p>
-                <a [routerLink]="['/recordatorio/detail', recordatorio.idrecordatorio]" class="btn btn-success btn-block">
-                  <i class="fa-solid fa-magnifying-glass-plus"></i>
-                </a>
+                <p>aviso por email?</p>
+                <p>{{recordatorio.email}}</p>
                 <a [routerLink]="['/recordatorio/edit', recordatorio.idrecordatorio]" class="btn btn-info btn-block">
                   <i class="fa-solid fa-pen-to-square"></i>
                 </a>
