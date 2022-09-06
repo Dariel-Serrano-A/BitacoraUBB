@@ -151,10 +151,5 @@ declare let require: Function;
   encapsulation: ViewEncapsulation.None
 })
 export class CalendarioComponent  {
-public selectedDate: Date = new Date(2022, 9, 6);
-   ngOnInit(): void {
-  }
- 
-
- }
+public selectedDate: Date = new Date(2022, 8, 6);}
 

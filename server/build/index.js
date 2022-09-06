@@ -30,7 +30,7 @@ class Server {
         this.app.use('/api/bitacoras', bitacorasRoutes_1.default);
         this.app.use('/api/notas', notasRoutes_1.default);
         this.app.use('/api/recordatorio', recordatoriosRoutes_1.default);
-        this.app.use('/api/calendario', indexRoutes_1.default);
+        this.app.use('/api/calendario', recordatoriosRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
