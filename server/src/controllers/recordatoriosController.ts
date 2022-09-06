@@ -55,7 +55,7 @@ class RecordatoriosController{
             response[1]='Error en descripción del recordatorio';
             res.json(response);
         }
-        else if (req.body.contenido.length>=600){
+        else if (req.body.descripcionrecordatorio.length>=600){
             response[0]=false;
             response[1]='Error en descripción del recordatorio, no puede superar los 600 caracteres';
             res.json(response);
@@ -90,7 +90,7 @@ class RecordatoriosController{
             response[1]='Error en descripción del recordatorio';
             res.json(response);
         }
-        else if (req.body.contenido.length>=600){
+        else if (req.body.descripcionrecordatorio.length>=600){
             response[0]=false;
             response[1]='Error en descripción de nota, no puede superar los 600 caracteres';
             res.json(response);

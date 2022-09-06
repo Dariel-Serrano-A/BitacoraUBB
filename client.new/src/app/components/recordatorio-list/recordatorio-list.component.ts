@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 })
 export class RecordatorioListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  recordatorio: any = [];
+  recordatorios: any = [];
   dtTrigger: Subject<any> = new Subject<any>();
   constructor(private recordatoriosServices: RecordatoriosService) { }
 
@@ -22,7 +22,7 @@ export class RecordatorioListComponent implements OnInit {
     this.recordatoriosServices.getRecordatorios()
     .subscribe(
       (res: any) => {
-        this.recordatorio = res;
+        this.recordatorios = res;
       },
       err=> {
         console.error(err)
