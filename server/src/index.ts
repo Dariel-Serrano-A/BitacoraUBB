@@ -6,6 +6,7 @@ import path from 'path';
 import indexRoutes from './routes/indexRoutes';
 import bitacorasRoutes from './routes/bitacorasRoutes';
 import notasRoutes from './routes/notasRoutes';
+import recordatoriosRoutes from './routes/recordatoriosRoutes';
 class Server {
     public app: Application;  
     constructor(){         
@@ -26,6 +27,7 @@ class Server {
         this.app.use('/',indexRoutes);
         this.app.use('/api/bitacoras',bitacorasRoutes);
         this.app.use('/api/notas', notasRoutes);
+        this.app.use('/api/recordatorio', recordatoriosRoutes);
     }
 
     start (): void {

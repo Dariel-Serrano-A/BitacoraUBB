@@ -1,0 +1,36 @@
+<div class="col-md-4 offset-md-4">
+  <div class="card">
+      <div class="card-body">
+          <form method="post" id="formid" enctype="multipart/form-data">
+              <h4 class="d-flex justify-content-center mb-3"> {{titulo_recordatorio}} </h4>
+              <div class="form-group">
+                Título:
+                <input style="background-color: #ffe8aa ; color: black;" type="text" name="titulonota" [(ngModel)]="recordatorio.titulorecordatorio" placeholder='Ingrese titulo' class="form-control">
+            </div>
+              <div class="form-group">
+                  Hora de aviso:
+                  <input type="text" name="horarecordatorio" [(ngModel)]="recordatorio.horarecordatorio" placeholder='Ejemplo, 100 o 5:00' class="form-control col-md-4" maxlength="5">
+              </div>
+              <div class="form-group my-3">
+                  Descripcion:
+                  <textarea type="text" name="descripcionrecordatorio" [(ngModel)]="recordatorio.descripcionrecordatorio" placeholder="Ejemplo: Esta es mi descripcion"  rows="3" class="form-control"  maxlength="500"></textarea>
+              </div>
+              <div class="form-group my-3">
+                  Requerirá aviso por email:
+                  <select name="email" [(ngModel)]="recordatorio.email" class="form-control">
+                      <option selected>No</option>                        
+                      <option>Si</option>
+                  </select>
+              </div>
+              <div class="d-flex align-items-center">
+                  <a [routerLink]="['/recordatorio']" class="form-control btn btn-danger btn-block">
+                      Volver
+                    </a>
+                  <button class="form-control btn btn-success btn-block " (click)="edit ? updateRecordatorio() : saveNewRecordatorio()">
+                      Guardar
+                  </button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>

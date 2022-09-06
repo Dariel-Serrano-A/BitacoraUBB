@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'
 import { DataTablesModule } from "angular-datatables";
 import Swal from 'sweetalert2'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,12 +17,21 @@ import { BitacoraDetailComponent } from './components/bitacora-detail/bitacora-d
 
 
 //Parte Shauffa
-
-import { CalendarioModule } from './components/calendario/calendario.module';
+import { registerLocaleData } from '@angular/common';
+import localeES from '@angular/common/locales/es';
 import { NotaFormComponent } from './components/nota-form/nota-form.component';
 import { NotaListComponent } from './components/nota-list/nota-list.component';
 import { NotasService } from './services/notas.service';
 import { NotaDetailComponent } from './components/nota-detail/nota-detail.component';
+import { RecordatorioComponent } from './components/recordatorio/recordatorio.component';
+import { RecordatorioFormComponent } from './components/recordatorio-form/recordatorio-form.component';
+import { RecordatorioListComponent } from './components/recordatorio-list/recordatorio-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { RecordatoriosService } from './services/recordatorios.service';
+
+
 
 @NgModule({
   declarations: [
@@ -32,7 +42,10 @@ import { NotaDetailComponent } from './components/nota-detail/nota-detail.compon
     BitacoraDetailComponent,
     NotaFormComponent,
     NotaListComponent,
-    NotaDetailComponent
+    NotaDetailComponent,
+    RecordatorioComponent,
+    RecordatorioListComponent,
+    RecordatorioFormComponent
   ],
   imports: [
     BrowserModule,
@@ -40,11 +53,12 @@ import { NotaDetailComponent } from './components/nota-detail/nota-detail.compon
     HttpClientModule,
     FormsModule,
     DataTablesModule,
-    CalendarioModule
+    BrowserAnimationsModule,
   ],
   providers: [
     BitacorasService
-    ,NotasService
+    ,NotasService,
+    RecordatoriosService
   ],
   bootstrap: [AppComponent]
 })

@@ -4,18 +4,25 @@ import { BitacoraListComponent } from './components/bitacora-list/bitacora-list.
 import { BitacoraFormComponent } from './components/bitacora-form/bitacora-form.component';
 import { BitacoraDetailComponent } from './components/bitacora-detail/bitacora-detail.component';
 
-import { CalendarioComponent } from './components/calendario/calendario.component';
+
 import { NotaFormComponent } from './components/nota-form/nota-form.component';
 import { NotaDetailComponent } from './components/nota-detail/nota-detail.component';
 import { NotaListComponent } from './components/nota-list/nota-list.component';
+import { RecordatorioComponent } from './components/recordatorio/recordatorio.component';
+import { RecordatorioFormComponent } from './components/recordatorio-form/recordatorio-form.component';
+import { RecordatorioListComponent } from './components/recordatorio-list/recordatorio-list.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/bitacoras',
+    redirectTo: '/home',
     pathMatch: 'full'
+  },
+  { path: 'home', component: HomeComponent
+
   },
   {
     path: 'bitacoras',
@@ -34,8 +41,20 @@ const routes: Routes = [
     component: BitacoraDetailComponent
   },
   {
-    path: 'calendario',
-    component: CalendarioComponent
+    path: 'recordatorio',
+    component: RecordatorioListComponent
+  },
+  {
+    path: 'recordatorio/add',
+    component: RecordatorioFormComponent
+  },
+  {
+    path: 'recordatorio/edit/:idrecordatorio',
+    component: RecordatorioFormComponent
+  },
+  {
+    path: 'recordatorio/detail/:idrecordatorio',
+    component: RecordatorioComponent
   },
   {
     path: 'notas',
