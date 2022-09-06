@@ -8,11 +8,11 @@
           <div class="col" *ngFor="let recordatorio of recordatorios">
             <div class="card text-center">
               <div class="card-header bg-warning text-white d-flex justify-content-between align-items-center">
-                {{recordatorio.titulo}}
+                {{recordatorio.titulorecordatorio}}
 
               </div>
               <div class="card-body">
-                <p>{{recordatorio.contenido}}</p>
+                <p>{{recordatorio.descripcionrecordatorio}}</p>
                 <a [routerLink]="['/recordatorio/detail', recordatorio.idrecordatorio]" class="btn btn-success btn-block">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
                 </a>
