@@ -103,6 +103,7 @@ class RecordatoriosController {
             const response = Array();
             req.body.titulorecordatorio = req.body.titulorecordatorio.toLowerCase();
             req.body.descripcionrecordatorio = req.body.descripcionrecordatorio.toLowerCase();
+            req.body.descripcionrecordatorio = capitalizeFirstLetter(req.body.contenido);
             if (!req.body.titulorecordatorio || req.body.titulorecordatorio.length <= 0 || !validarTexto(req.body.titulorecordatorio)) {
                 response[0] = false;
                 response[1] = 'Error en título del recordatorio';
@@ -153,7 +154,9 @@ class RecordatoriosController {
         });
     }
 }
-
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 function validarTexto(texto) {
     return /[a-zA-ZÀ-ÿ\u00f1\u00d1\, \./]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1\, \./]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1\, \./]+/g.test(texto);
 }
