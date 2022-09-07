@@ -209,9 +209,9 @@ updateRecordatorios(){
       event.target.value = event.target.value.replace(/^(\d{0})(\d{2})$/g, ':$2')
     } else if(event.target.value.match(/^(\d{0})(\d{1})$/g)){
       event.target.value = event.target.value.replace(/^(\d{0})(\d{1})$/g, ':0$2')
-    } 
+    }
   }
-  
+
   cambiarTexto(event: any){
     event.target.value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
     if(event.target.value.match(/^\d{1}/)){

@@ -1,0 +1,8 @@
+{
+  "domain": "dev-x8l3ymcg.us.auth0.com",
+  "clientId": "kAIcVs38G4GuW8jcZpSpCKKwm76Oo7mk",
+  "audience": "https://dev-x8l3ymcg.us.auth0.com/api/v2/",
+  "apiUri": "http://localhost:3000",
+  "appUri": "http://localhost:4200",
+  "errorPath": "/error"
+}

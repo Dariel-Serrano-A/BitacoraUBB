@@ -28,13 +28,14 @@ import { RecordatorioComponent } from './components/recordatorio/recordatorio.co
 import { RecordatorioFormComponent } from './components/recordatorio-form/recordatorio-form.component';
 import { RecordatorioListComponent } from './components/recordatorio-list/recordatorio-list.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { RecordatoriosService } from './services/recordatorios.service';
 import { ScheduleAllModule, RecurrenceEditorAllModule } from '@syncfusion/ej2-angular-schedule';
 import {loadCldr, setCulture, setCurrencyCode} from '@syncfusion/ej2-base';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { DropDownButtonAllModule } from '@syncfusion/ej2-angular-splitbuttons';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
 
 import { TreeViewModule } from '@syncfusion/ej2-angular-navigations';
 
@@ -49,6 +50,9 @@ import { ButtonAllModule, CheckBoxAllModule, SwitchAllModule } from '@syncfusion
 import { DatePickerAllModule, TimePickerAllModule, DateTimePickerAllModule } from '@syncfusion/ej2-angular-calendars';
 
 import { NumericTextBoxAllModule, TextBoxAllModule } from '@syncfusion/ej2-angular-inputs';
+import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
 
 
 
@@ -67,9 +71,11 @@ import { NumericTextBoxAllModule, TextBoxAllModule } from '@syncfusion/ej2-angul
     RecordatorioListComponent,
     RecordatorioFormComponent,
     HomeComponent,
-    LoginComponent,
     RegistroComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    LoginButtonComponent,
+    LogoutButtonComponent,
+    AuthenticationButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +96,7 @@ import { NumericTextBoxAllModule, TextBoxAllModule } from '@syncfusion/ej2-angul
   providers: [
     BitacorasService
     ,NotasService,
-    RecordatoriosService
+    RecordatoriosService,
   ],
   bootstrap: [AppComponent]
 })

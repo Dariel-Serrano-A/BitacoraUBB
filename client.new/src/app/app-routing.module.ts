@@ -12,8 +12,6 @@ import { RecordatorioComponent } from './components/recordatorio/recordatorio.co
 import { RecordatorioFormComponent } from './components/recordatorio-form/recordatorio-form.component';
 import { RecordatorioListComponent } from './components/recordatorio-list/recordatorio-list.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegistroComponent } from './components/registro/registro.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 
 

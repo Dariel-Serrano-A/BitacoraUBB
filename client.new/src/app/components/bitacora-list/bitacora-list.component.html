@@ -1,3 +1,4 @@
+<h1>Lista de Bitácoras Registradas</h1>
 <a [routerLink]="['/bitacoras/add']" class="btn btn-info btn-block float-end mb-2">
   Agregar bitacora
 </a>
@@ -19,15 +20,15 @@
         <div class="d-flex justify-contentbetweeen align-items-center">
           <a [routerLink]="['/bitacoras/detail', bitacora.idbitacora]" class="btn btn-success btn-block">
             VER DETALLE
-          </a> 
+          </a>
           <a [routerLink]="['/bitacoras/edit', bitacora.idbitacora]" class="btn btn-info btn-block">
             EDITAR
-          </a>         
+          </a>
           <button class="btn btn-danger" (click)="deleteBitacora(bitacora.idbitacora)">
             <i class="far fa-trash-alt" ></i>
           </button>
           </div>
-    
+
       </td>
     </tr>
   </tbody>
